@@ -7,6 +7,8 @@ import ExpressMongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
 // import cookie from "cookie-parse";
 import cors from "cors";
+import healthRoute from "./routes/health.route.js";
+import userRoute from "./routes/user.route.js";
 
 dotenv.config();
 const app = express();
@@ -62,6 +64,10 @@ app.use(
     ],
   })
 );
+
+// API Routes
+app.use("/health", healthRoute);
+app.use("/api/v1/user", userRoute);
 
 app.use((req, res) => {
   res.status(404).json({
